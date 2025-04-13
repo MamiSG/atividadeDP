@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gerenciador de RPG</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Gerenciador de Personagens de RPG</h1>
+  </header>
+
+  <main>
+    <section class="formulario">
+      <h2>Criar ou Editar Personagem</h2>
+      <form id="personagemForm">
+        <input type="hidden" id="personagemId">
+
+        <label for="nome">Nome verdadeiro:</label>
+        <input type="text" id="nome" required>
+
+        <label for="nomeAventureiro">Nome de Aventureiro:</label>
+        <input type="text" id="nomeAventureiro" required>
+
+        <label for="classe">Classe:</label>
+        <select id="classe" required>
+          <option value="">Selecione</option>
+          <option value="Guerreiro">Guerreiro</option>
+          <option value="Mago">Mago</option>
+          <option value="Arqueiro">Arqueiro</option>
+          <option value="Bardo">Bardo</option>
+          <option value="Ladino">Ladino</option>
+        </select>
+
+        <label for="forca">Força (0–10):</label>
+        <input type="number" id="forca" min="0" max="10" required>
+
+        <label for="defesa">Defesa (0–10):</label>
+        <input type="number" id="defesa" min="0" max="10" required>
+
+        <button type="submit">Salvar Personagem</button>
+      </form>
+    </section>
+
+    <section class="lista">
+      <h2>Lista de Personagens</h2>
+      <div id="listaPersonagens"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
