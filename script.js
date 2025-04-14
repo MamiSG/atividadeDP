@@ -8,10 +8,11 @@ class ItemMagico {
     this.tipo = tipo;
     this.forca = forca;
     this.defesa = defesa;
+    this.icone = `assets/icons/${sortearIconeItem(tipo)}.png`;
 
     this.validar();
   }
-
+  
   validar() {
     const tiposValidos = ['Arma', 'Armadura', 'Amuleto'];
     if (!tiposValidos.includes(this.tipo)) {
@@ -49,6 +50,7 @@ class Personagem {
     this.forcaBase = forca;
     this.defesaBase = defesa;
     this.itensMagicos = [];
+    this.icone = `assets/icons/${sortearIconeClasse(classe)}.png`;
   }
 
   get forcaTotal() {
@@ -60,6 +62,16 @@ class Personagem {
     const bonus = this.itensMagicos.reduce((total, item) => total + item.defesa, 0);
     return this.defesaBase + bonus;
   }
+}
+
+function sortearIconeClasse(classe) {
+    const opcoes = iconesClasses[classe];
+    return opcoes[Math.floor(Math.random() * opcoes.length)];
+  }
+
+function sortearIconeItem(tipo) {
+    const opcoes = iconesItens[tipo];
+    return opcoes[Math.floor(Math.random() * opcoes.length)];
 }
 
 function prepararAdicaoItem(personagemId) {
@@ -129,19 +141,28 @@ function prepararAdicaoItem(personagemId) {
     div.innerHTML = personagens.map(p => {
       const itensHtml = p.itensMagicos.length
         ? `<ul>${p.itensMagicos.map(item =>
-          `<li>${item.nome} (${item.tipo}) - F: ${item.forca} | D: ${item.defesa}
-           <button onclick="removerItem(${p.id}, ${item.id})">Remover Item</button>
-           </li>`).join('')}</ul>`
+          `<li>
+            <img src="${item.icone}" alt="${item.nome}" width="24" height="24" style="vertical-align: middle; margin-right: 5px;">
+            ${item.nome} (${item.tipo}) - F: ${item.forca} | D: ${item.defesa}
+            <button onclick="removerItem(${p.id}, ${item.id})">Remover Item</button>
+          </li>`).join('')}</ul>`
         : '<em>Nenhum item mágico</em>';
   
       return `
-        <div id="personagem-${p.id}">
-          <strong>${p.nomeAventureiro}</strong> (${p.classe})<br>
-          Força: ${p.forcaTotal} | Defesa: ${p.defesaTotal}<br>
-          ${itensHtml}
-          <button onclick="editarPersonagem(${p.id})">Editar</button>
-          <button onclick="removerPersonagem(${p.id})">Remover</button>
-          <button onclick="prepararAdicaoItem(${p.id})">Adicionar Item</button>
+        <div id="personagem-${p.id}" class="cardPersonagem">
+          <div class="cabecalhoPersonagem">
+            <img src="${p.icone}" alt="${p.classe}" width="32" height="32" style="vertical-align: middle; margin-right: 5px;">
+            <strong>${p.nomeAventureiro}</strong> (${p.classe})
+          </div>
+          <div>
+            Força: ${p.forcaTotal} | Defesa: ${p.defesaTotal}
+          </div>
+          <div>${itensHtml}</div>
+          <div>
+            <button onclick="editarPersonagem(${p.id})">Editar</button>
+            <button onclick="removerPersonagem(${p.id})">Remover</button>
+            <button onclick="prepararAdicaoItem(${p.id})">Adicionar Item</button>
+          </div>
           <hr>
         </div>
       `;
@@ -226,3 +247,17 @@ function validarDistribuicao() {
 
 forcaInput.addEventListener('input', validarDistribuicao);
 defesaInput.addEventListener('input', validarDistribuicao);
+
+const iconesClasses = {
+    Guerreiro: ["sword_01a", "sword_01b", "sword_01c", "sword_01d", "sword_01e"],
+    Mago: ["hat_01a", "hat_01b", "hat_01c", "hat_01d", "hat_01e"],
+    Arqueiro: ["bow_01a", "bow_01b", "bow_01c", "bow_01d", "bow_01e"],
+    Bardo: ["shard_01a", "shard_01b", "shard_01c", "shard_01d", "shard_01e"],
+    Ladino: ["coin_03a", "coin_03b", "coin_03c", "coin_03d", "coin_03e"]
+  };
+  
+  const iconesItens = {
+    Arma: ["scroll_01a", "scroll_01b", "scroll_01c", "scroll_01d", "scroll_01e"],
+    Armadura: ["armor_01a", "armor_01b", "armor_01c", "armor_01d", "armor_01e"],
+    Amuleto: ["necklace_01a", "necklace_01b", "necklace_01c", "necklace_01d", "necklace_01e"]
+  };

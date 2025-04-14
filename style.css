@@ -1,15 +1,135 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-  }
-  
-  form input, form select, form button {
-    margin: 5px;
-    padding: 8px;
-  }
-  
-  #listaPersonagens {
-    margin-top: 20px;
-    border-top: 1px solid #ccc;
-    padding-top: 10px;
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+#penguin-gif {
+    position: fixed;
+    width: 100px;
+    height: auto;
+    image-rendering: pixelated;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.gif-retro {
+    position: fixed;
+    top: 10px;
+    right: 30px;
+    width: 240px;
+    z-index: 1000;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 4px #00f5ff) drop-shadow(0 0 8px #00f5ff);
   }  
+
+body {
+  background-image: url('https://www.transparenttextures.com/patterns/pixel-weave.png');
+  background-color: #000033;
+  color: #00ffcc;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  color: #ff00ff;
+  text-shadow: 2px 2px #000;
+  background-color: #00ffff;
+  padding: 5px 10px;
+  border: 2px solid #ff00ff;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+button, .btn {
+  background: linear-gradient(to bottom, #ffcc00, #ff9900);
+  color: #000;
+  border: 3px outset #cc00ff;
+  font-family: 'Press Start 2P', monospace;
+  padding: 10px 20px;
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow: 3px 3px #000;
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+
+input, select, textarea {
+  background-color: #000;
+  color: #00ffcc;
+  border: 2px dashed #ff00ff;
+  font-family: 'Press Start 2P', monospace;
+  padding: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.card {
+  border: 3px double #00ffff;
+  background-color: #111133;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 0 15px #00ffff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #222244;
+}
+
+th, td {
+  border: 2px solid #ff00ff;
+  padding: 10px;
+  text-align: left;
+}
+
+.decoration-gif {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 80px;
+  image-rendering: pixelated;
+  z-index: 99;
+}
+
+a {
+  color: #00ffff;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #ff00ff;
+  background-color: #000;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff00ff;
+  border: 2px solid #00ffff;
+}
+
+.icone {
+    width: 48px;
+    height: 48px;
+    image-rendering: pixelated;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .personagem-card {
+    display: flex;
+    align-items: center;
+    border: 3px double #00ffff;
+    background-color: #111133;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0 0 15px #00ffff;
+  }
+  .personagem-info {
+    flex: 1;
+  }

@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <img src="assets/penguin-warcraft-3.gif" alt="Pinguim guerreiro" id="penguin-gif">
+    <img src="assets/WarcraftIII2024-Combat_Kobalts1.gif" alt="GIF retrô" class="gif-retro">
   <header>
     <h1>Gerenciador de Personagens de RPG</h1>
   </header>
@@ -50,5 +52,33 @@
   </main>
 
   <script src="script.js"></script>
+  <script>
+    const pinguim = document.getElementById("penguin-gif");
+  
+    let x = 100;
+    let y = 100;
+    let dx = 1;
+    let dy = 1;
+  
+    const move = () => {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const pw = pinguim.offsetWidth;
+      const ph = pinguim.offsetHeight;
+  
+      x += dx;
+      y += dy;
+  
+      if (x + pw >= vw || x <= 0) dx = -dx;
+      if (y + ph >= vh || y <= 0) dy = -dy;
+  
+      pinguim.style.left = x + "px";
+      pinguim.style.top = y + "px";
+  
+      requestAnimationFrame(move);
+    };
+  
+    move();
+  </script>  
 </body>
 </html>
